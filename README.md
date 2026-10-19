@@ -1,14 +1,28 @@
 # AnimeTracker 🍜
 
-A modern anime discovery and tracking web application built with React and powered by the AniList GraphQL API.
+This anime tracker is a modern anime discovery and tracking web application built with React and powered by the AniList GraphQL API. Inspired by existing anime tracking platforms, it features a streamlined interface for discovering anime, managing personal watchlists, tracking viewing progress, and exploring seasonal releases. The goal is to make discovering new series and managing an anime watchlist feel intuitive across desktop and mobile devices.
 
-[**Live Demo**](https://a4anime.vercel.app/)
+[**Live Demo →**](https://a4anime.vercel.app/)
 
-## Overview
+## Preview
 
-AnimeTracker is a web application for discovering anime, managing a personal watchlist, tracking viewing progress, and exploring currently airing series.
+### Home Page
 
-Inspired by existing anime tracking platforms, the project reimagines the browsing and tracking experience through a modern interface, clear information hierarchy, and streamlined navigation. The goal is to make discovering new series and managing an anime watchlist feel intuitive across desktop and mobile devices.
+<p align="center">
+  <img src="public/imgs/home.png" alt="Home Page Screenshot" width="100%"/>
+</p>
+
+### Discover Page
+
+<p align="center">
+  <img src="public/imgs/discover.png" alt="Discover Page Screenshot" width="100%"/>
+</p>
+
+### My List Page
+
+<p align="center">
+  <img src="public/imgs/list.png" alt="My List Page Screenshot" width="100%"/>
+</p>
 
 ## Features
 
