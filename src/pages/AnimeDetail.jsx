@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import AnimeCard from "../components/anime/AnimeCard";
 
@@ -96,6 +97,10 @@ function getRelationTitle(node) {
 function AnimeDetail() {
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
+  const { user, loading: authLoading } = useAuth();
+
   const [activeTab, setActiveTab] = useState("overview");
 
   const [progressInput, setProgressInput] = useState("0");
@@ -103,6 +108,8 @@ function AnimeDetail() {
   const [episodePage, setEpisodePage] = useState(1);
 
   const [jumpRequested, setJumpRequested] = useState(false);
+
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
   const {
     data: anime,
@@ -141,6 +148,19 @@ function AnimeDetail() {
     getAnimeFromList,
     isAnimeInList,
   } = useMyList();
+
+  function handleAddToList() {
+    if (authLoading) {
+      return;
+    }
+
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
+    addAnime(anime);
+  }
 
   const inMyList = anime ? isAnimeInList(anime.id) : false;
 
@@ -464,7 +484,7 @@ function AnimeDetail() {
                 if (inMyList) {
                   removeAnime(anime.id);
                 } else {
-                  addAnime(anime);
+                  handleAddToList();
                 }
               }}
             >
@@ -537,7 +557,7 @@ function AnimeDetail() {
               <button
                 type="button"
                 className="anime-detail__secondary-button"
-                onClick={() => addAnime(anime)}
+                onClick={handleAddToList}
               >
                 + Add to My List
               </button>
@@ -637,7 +657,7 @@ function AnimeDetail() {
             <button
               type="button"
               className="anime-detail__progress-save"
-              onClick={() => addAnime(anime)}
+              onClick={handleAddToList}
             >
               Add to My List
             </button>
@@ -1190,6 +1210,62 @@ function AnimeDetail() {
           </div>
         )}
       </section>
+
+      {showLoginPrompt && (
+        <div
+          className="anime-login-modal__overlay"
+          onClick={() => setShowLoginPrompt(false)}
+        >
+          <div
+            className="anime-login-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="anime-login-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="anime-login-modal__close"
+              onClick={() => setShowLoginPrompt(false)}
+              aria-label="Close dialog"
+            >
+              ×
+            </button>
+
+            <div className="anime-login-modal__icon" aria-hidden="true">
+              ♡
+            </div>
+
+            <h2 id="anime-login-modal-title">
+              Sign in to build your anime list
+            </h2>
+
+            <p>
+              Keep track of what you're watching, save anime for later, and
+              follow your episode progress.
+            </p>
+
+            <button
+              type="button"
+              className="anime-login-modal__signin"
+              onClick={() => {
+                setShowLoginPrompt(false);
+                navigate("/profile");
+              }}
+            >
+              Sign In
+            </button>
+
+            <button
+              type="button"
+              className="anime-login-modal__later"
+              onClick={() => setShowLoginPrompt(false)}
+            >
+              Maybe later
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

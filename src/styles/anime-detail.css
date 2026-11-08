@@ -1765,3 +1765,151 @@
 .anime-detail__progress-section .anime-detail__progress-card {
   margin-bottom: 0;
 }
+
+/* ==================================================
+   LOGIN PROMPT MODAL
+   ================================================== */
+
+.anime-login-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(25, 20, 20, 0.55);
+  backdrop-filter: blur(4px);
+  animation: anime-modal-fade-in 0.2s ease;
+}
+
+.anime-login-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 38px 32px 30px;
+  background: #fffefa;
+  border: 1px solid #eee7df;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: anime-modal-slide-up 0.25s ease;
+}
+
+.anime-login-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #77716d;
+  font-size: 25px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.anime-login-modal__close:hover {
+  background: #f3eeea;
+  color: #333;
+}
+
+.anime-login-modal__icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--accent-soft, #f6eaea);
+  color: var(--accent, #a33a3a);
+  font-size: 30px;
+}
+
+.anime-login-modal h2 {
+  margin: 0 0 12px;
+  color: #282421;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.anime-login-modal p {
+  margin: 0 auto 25px;
+  max-width: 320px;
+  color: #77716d;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.anime-login-modal__signin {
+  width: 100%;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 9px;
+  background: var(--accent, #a33a3a);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.anime-login-modal__signin:hover {
+  background: var(--accent-dark, #8f2f2f);
+  transform: translateY(-1px);
+}
+
+.anime-login-modal__later {
+  margin-top: 14px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: #77716d;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.anime-login-modal__later:hover {
+  color: #292421;
+}
+
+@keyframes anime-modal-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes anime-modal-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .anime-login-modal {
+    padding: 34px 24px 25px;
+  }
+
+  .anime-login-modal h2 {
+    font-size: 20px;
+  }
+}
