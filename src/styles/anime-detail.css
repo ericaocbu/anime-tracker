@@ -1867,11 +1867,12 @@
 }
 
 .anime-login-modal__later {
-  margin-top: 14px;
-  padding: 8px 16px;
-  border: none;
+  margin-top: 7px;
+  width: 100%;
+  padding: 13px 20px;
+  border: 1px solid;
+  border-radius: 9px;
   background: transparent;
-  color: #77716d;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -1879,7 +1880,9 @@
 }
 
 .anime-login-modal__later:hover {
-  color: #292421;
+  color: white;
+  background: grey;
+  transform: translateY(-1px);
 }
 
 @keyframes anime-modal-fade-in {
